@@ -1,0 +1,33 @@
+﻿@page "/"
+
+@using DocsBlobStorage.Models
+@using Microsoft.AspNetCore.Components.Forms
+@using Azure.Storage.Blobs
+@using System.IO
+
+<EditForm Model="@fileUploadModel" OnValidSubmit="HandleValidSubmit" class="upload-form">
+    <DataAnnotationsValidator />
+    <ValidationSummary class="validation-summary" />
+
+    <div class="input-group centered-text">
+        <p class="file-upload-instruction">Please upload files only in .docx format.</p>
+        <InputFile OnChange="@OnInputFileChange" accept=".docx" class="input-file" />
+        <span class="error-message">@fileErrorMessage</span>
+    </div>
+
+    <div class="input-group email-input-group centered-text">
+        <label for="emailInput" class="input-label">Email Address:</label>
+        <InputText id="emailInput" @bind-Value="fileUploadModel.Email" class="input-text" placeholder="Enter your email here..." />
+        <span class="input-hint">Please enter your email address to receive access to your file for 1 hour.</span>
+    </div>
+
+    <button type="submit" class="upload-button">Upload</button>
+</EditForm>
+
+
+@if (uploadMessage != null)
+{
+    <div class="notification-message @(uploadMessage.StartsWith("Error") ? "error" : "")">
+        @uploadMessage
+    </div>
+}
