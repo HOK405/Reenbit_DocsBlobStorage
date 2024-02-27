@@ -3,7 +3,7 @@
 Test task Reenbit.
 Website - https://docsblobstorage405.azurewebsites.net
 
-- ### Maing page:
+- ### Main page:
 
   ![MainPage](/Screenshots/Screenshot_1.png)
 
